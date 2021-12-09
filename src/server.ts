@@ -1,12 +1,15 @@
-import express from 'express';
+import express, { IRouter } from 'express';
 import { IConfig } from 'interfaces/config.interface';
 class Server {
   private _config: IConfig;
   private _express;
+  private _router: any;
 
-  constructor(config: IConfig) {
+  constructor(config: IConfig, router: any) {
     this._config = config;
     this._express = express();
+    this._router = router;
+    this._express.use(this._router);
   }
 
   start() {
