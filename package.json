@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node dist/server.js"
+    "start": "tsc && node dist/index.js"
   },
   "keywords": [
     "node",
@@ -15,6 +15,7 @@
   "author": "Israel CM",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1"
   },
   "devDependencies": {

@@ -1,36 +1,24 @@
 import express from 'express';
+import { IConfig } from 'interfaces/config.interface';
+class Server {
+  private _config: IConfig;
+  private _express;
 
-const app = express();
-const port = 3500;
+  constructor(config: IConfig) {
+    this._config = config;
+    this._express = express();
+  }
 
-const middleware = (req, res, next) => {
-  console.log(req.method, req.path);
-  next();
-};
-
-
-// main route
-app.get('/', [middleware, middleware] ,(req, res) => {
-    res.status(200).send({
-      message: 'Welcome to the EXPRESS API',
-      date: new Date(),
+  start() {
+    return new Promise((resolve, reject) => {
+      const http = this._express.listen(this._config.PORT, () => {
+        const { port } = http.address();
+        console.log(`Server started on port ${port}`);
+        resolve(null);
+      });
     });
-});
-
-app.get('/users', [middleware, middleware], (req, res) => {
-  res.status(200).send([
-    {
-      id: 1,
-      name: 'Israel Cm',
-    },
-    {
-      id: 2,
-      name: 'Juan Macias',
-    }
-  ]);
-});
+  }
+}
 
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+export default Server;
