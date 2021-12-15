@@ -8,6 +8,8 @@
     "declaration": true,
     "baseUrl": "./src",
     "outDir": "./dist",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
   },
   "exclude": [
     "node_modules",
